@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.IO;
 using System.Configuration;
 using System.Text.RegularExpressions;
+using System.ComponentModel;
 
 namespace LiteDB
 {
@@ -81,8 +81,9 @@ namespace LiteDB
 
         private T GetValue<T>(Dictionary<string, string> values, string key, T defaultValue)
         {
-            return values.ContainsKey(key) ?
-                (T)Convert.ChangeType(values[key], typeof(T)) :
+            var converter = TypeDescriptor.GetConverter( typeof( T ) );
+            return values.ContainsKey( key ) && converter.CanConvertFrom( values[key].GetType( ) ) ?
+                (T)converter.ConvertFrom( values[key] ) :
                 defaultValue;
         }
     }
