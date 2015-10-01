@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="BsonTest.cs" />
     <Compile Include="AutoIdTest.cs" />
+    <Compile Include="ConnectionStringTest.cs" />
     <Compile Include="DropCollectionTest.cs" />
     <Compile Include="FileStorageTest.cs" />
     <Compile Include="BigFileTest.cs" />
